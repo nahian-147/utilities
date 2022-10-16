@@ -1,29 +1,31 @@
-if [ ! -d $(pwd)"/bin" ]
+rootDir=$(pwd);
+srcDir=$rootDir"/src";
+binDir=$rootDir"/bin";
+
+if [ ! -d $rootDir"/bin" ]
 then
     mkdir  bin
 fi
 
-rootDir=$(pwd);
-srcDir=${rootDir}"/src/";
 cd ${srcDir};
 
 for c_source in $(ls *.c)
 do
     echo ${c_source};
     gcc ${c_source} -o ${c_source%.*};
-    mv ${c_source%.*} ${rootDir}"/bin/";
+    mv ${c_source%.*} $binDir;
 done
 
 for c_source in $(ls *.cpp)
 do
     echo ${c_source};
     g++ ${c_source} -o ${c_source%.*};
-    mv ${c_source%.*} ${rootDir}"/bin/";
+    mv ${c_source%.*} $binDir;
 done
 
 file=$HOME"/"".""bashrc";
 
-path="export PATH=""$""PATH:"${HOME}"/utilities/bin";
+path="export PATH=""$""PATH:"$binDir;
 
 if ! grep -q "${path}" ${file};
 then
