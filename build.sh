@@ -3,11 +3,15 @@ then
     mkdir  bin
 fi
 
-for c_source in $(ls *.c)
+rootDir=$(pwd);
+srcDir=${rootDir}"/src/";
+cd ${srcDir};
+
+for c_source in $(ls)
 do
     echo ${c_source};
     gcc ${c_source} -o ${c_source%.*};
-    mv ${c_source%.*} $(pwd)"/bin/";
+    mv ${c_source%.*} ${rootDir}"/bin/";
 done
 
 file=$HOME"/"".""bashrc";
