@@ -9,6 +9,8 @@ fi
 
 cd ${srcDir};
 
+echo Compiling Source Codes...
+
 for c_source in $(ls *.c)
 do
     echo ${c_source};
@@ -22,6 +24,8 @@ do
     g++ ${c_source} -o ${c_source%.*};
     mv ${c_source%.*} $binDir;
 done
+
+echo Done Compiling.
 
 file=$HOME"/"".""bashrc";
 
